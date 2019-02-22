@@ -96,6 +96,16 @@ public class LeilaoTest {
 		assertEquals(false,anoBissexto.isBissexto(2015));
 		assertEquals(false,anoBissexto.isBissexto(2011));
 	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void deveRecusarLancesComValorDeZero(){
+		new Lance(new Usuario("Jhon Doe"),0);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveRecursarLancesComValorNegativo() {
+		new Lance(new Usuario("Jhon Doe"),-10);
+	}
 	
 }
 
