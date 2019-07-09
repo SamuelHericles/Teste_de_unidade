@@ -4,6 +4,6 @@
   + Ecplise IDE;
   + Java junit;
   + Java SE versão 1.8 ou superior;
-# Autores
+# Autor
   + Samuel Hericles - samuel.hericles@outlook.com
   
