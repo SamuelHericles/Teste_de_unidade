@@ -6,16 +6,17 @@ import java.util.List;
 
 public class Leilao {
 
+	//Variaveis da classe
 	private String descricao;
 	private List<Lance> lances;
 
+	//Construtor para usuário inserir seu lance para qual evento
 	public Leilao(String descricao) {
 		this.descricao = descricao;
 		this.lances = new ArrayList<Lance>();
 	}
 
-	//CÓDIGO REFATORADO
-	//TEST-DRIVEN DEVELOPMENT
+	//Test Drive Development - TDD
 	
 	/* 
 	 * -Se sempre escrevermos o teste antes, garantimos que todo nosso código já "nasce" testado;
@@ -29,23 +30,26 @@ public class Leilao {
 
 	
 	/*
-	 *  - baby steps: passos pequenos e consissos, para evoluir com base em testes.
+	 * - baby steps: passos pequenos e consissos, para evoluir com base em testes.
 	 * - Com o TDD nos deixa pensar cada vez mais simples as implementações.
 	 * - Tome passo pequenos sempre quando sua confiança estiver baixa.
-	 * - A unica maneira de trabalhar com qualidade e segunraça em código assim é tendo uma bateria de testes que garanta qualquer mundança feita; 
+	 * - A unica maneira de trabalhar com qualidade e segunraça em código assim é tendo uma bateria 
+	 *   de testes que garanta qualquer mundança feita; 
 	 */
 	
-	//para usar o equals melhor, devemso implementar o hashCode na classe que instaciamos
+	//Para usar o equals melhor, devemos implementar o hashCode na classe que instaciamos
 	public void propoe(Lance lance) {
 		if (lances.isEmpty() || podeDarLance(lance.getUsuario())) {
 			lances.add(lance);
 		}
 	}
 
+	//Verificar o lance dado	
 	private boolean podeDarLance(Usuario usuario) {
 		return !extracted().getUsuario().equals(usuario)&& qtdDeLanceDo(usuario) < 5;
 	}
 
+	//Saber a quantidade de lances ofertados
 	private int qtdDeLanceDo(Usuario usuario) {
 		int total = 0;
 		for (Lance l : lances) {
@@ -58,14 +62,17 @@ public class Leilao {
 		return lances.get(lances.size() - 1);
 	}
 
+	//Obter a descrição do lance
 	public String getDescricao() {
 		return descricao;
 	}
 
+	//Obter a lista de lances
 	public List<Lance> getLances() {
 		return Collections.unmodifiableList(lances);
 	}
 	
+	//Saber se o ano eh bissexto ou não
 	public boolean isBissexto(int ano) {
 		if((ano % 4 ==0) && (ano % 100 != 0) ) return true;
 		else if ((ano % 400 == 0 )) return true;

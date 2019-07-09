@@ -1,5 +1,6 @@
 package br.com.caelum.leilao.matematica;
 
+//Classe para verificar se um numero eh maior que 30 ou maior que 10
 public class MatematicaMaluca {
 
 	public int contaMaluca(int numero) {

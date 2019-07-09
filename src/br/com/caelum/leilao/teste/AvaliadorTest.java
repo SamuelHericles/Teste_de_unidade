@@ -20,24 +20,27 @@ import br.com.caelum.leilao.dominio.Usuario;
 import br.com.caelum.leilao.servico.Avaliador;
 
 /*
- * convenção de pastas a vantagem é a rastreabilidade das classes você sabe qual
- * pasta está as classes de testes.
+   convenção de pastas a vantagem é a rastreabilidade das classes você sabe qual
+   pasta está as classes de testes.
+
+   DESENVOLVIMENTO COM TESTE É MAIS PRODUTIVOS POIS SÃO 100 LINHA DE CÓDIGO QUE
+   SERÃO REALMENTE UTEIS, POR EXEMPLO.
+
+   Equivaliencia de testes: só precisa fazer um certa bateria de testes
+   especifica que serve para outras com apenas valores
+   diferentes, mas o resultado que esperamos seria o mesmo para todas.
+   inicar o método antes dos testes, assim não precisamos chamar o método todas
+   vez que precisarmos.
+   é criado a cada método anotado como "@Test"
+   teste é da org.util
+   NÃO ESQUEÇA DE FAZER TESTES COM CASOS EXEPCIONAIS.
+
+   Ao testar uma Lista, fazer N+1 verificações(quantidade de asserts), o
+   primeiro para garantir o tamanho da lista, depois N asserts para garantir o
+   conteúdo interno completo dessa lista.
+ 
  */
-// DESENVOLVIMENTO COM TESTE É MAIS PRODUTIVOS POIS SÃO 100 LINHA DE CÓDIGO QUE
-// SERÃO REALMENTE UTEIS, POR EXEMPLO.
-// Equivaliencia de testes: só precisa fazer um certa bateria de testes
-// especifica que serve para outras com apenas valores
-// diferentes, mas o resultado que esperamos seria o mesmo para todas.
-// inicar o método antes dos testes, assim não precisamos chamar o método todas
-// vez que precisarmos.
-// é criado a cada método anotado como "@Test"
-// teste é da org.util
-// NÃO ESQUEÇA DE FAZER TESTES COM CASOS EXEPCIONAIS.
-/*
- * Ao testar uma Lista, fazer N+1 verificações(quantidade de asserts), o
- * primeiro para garantir o tamanho da lista, depois N asserts para garantir o
- * conteúdo interno completo dessa lista.
- */
+
 //Hamcrest = é um framework que nos auxilia em métodos mais intuitivos,
 //deixando o método mais legivel.É incorajado pois é muito util para legibilidade de código.
 public class AvaliadorTest {
@@ -68,6 +71,7 @@ public class AvaliadorTest {
 	 * BeforeClass e AfterClass é util para quando querendo usar um recurso apena
 	 * uma vez e dopois libera-lo apenas uma vez.
 	 */
+	
 	// Anotção que faz o método ser executado antes de todos os métodos dessa
 	// classe,executado apenas uma vez.
 	@BeforeClass
@@ -91,6 +95,7 @@ public class AvaliadorTest {
 		leiloeiro.avalia(leilao);
 	}
 
+	//Testar para retornar os lances em ordem crescente
 	@Test
 	public void deveEntenderLancesEmOrdemCrescente() {
 		// parte 1: cenario
@@ -112,6 +117,7 @@ public class AvaliadorTest {
 		assertThat(leiloeiro.getMenorLance(),equalTo(250.00));
 	}
 
+	//Testar para entender com lances em ordem crescente
 	@Test
 	public void deveEntenderLancesEmOrdemCrescenteComOutrosValores() {
 		Leilao leilao = new Leilao("Playstation 3 Novo");
@@ -127,6 +133,7 @@ public class AvaliadorTest {
 
 	}
 
+	//Testar para o método entender como apenas um lance
 	@Test
 	public void deveEntenderLeilaoComApenasUmLance() {
 		Leilao leilao = new Leilao("Playstation 3 Novo");
@@ -140,6 +147,7 @@ public class AvaliadorTest {
 
 	}
 
+	//Testar para encontrar os três maiores lances
 	@Test
 	public void deveEncontrarOsTresMaioresLances() {
 		Leilao leilao = new CriadoDeLeilao().para("Playstation 3 novo")
@@ -162,6 +170,7 @@ public class AvaliadorTest {
 				));
 	}
 
+	//Testar com um unico lance
 	@Test
 	public void umUnicoLance() {
 		Leilao leilao = new Leilao("Carro");
@@ -175,6 +184,7 @@ public class AvaliadorTest {
 
 	}
 
+	//Testar com lances aleatórios
 	@Test
 	public void lancesAletorios() {
 		Leilao leilao = new CriadoDeLeilao().para("Paystation 3 Novo").lance(joao, 200.00).lance(maria, 450.00)

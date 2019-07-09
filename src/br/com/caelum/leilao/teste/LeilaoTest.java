@@ -12,12 +12,18 @@ import br.com.caelum.leilao.dominio.Usuario;
 public class LeilaoTest {
 
 	
-	//TDD- podemos testar primeiro a classe com métodos brutos e depois de dar certo podemos refatorar o código para
-	//deixá-lo mais refinado.s´
+	/*
 	
+	     TDD- podemos testar primeiro a classe com métodos brutos e depois de dar 
+	 certo podemos refatorar o código para deixá-lo mais refinados
+	
+	*/
+
 	/*
 	 * TDD é uma pratica de desenvolvimento em que construimos os testes antes do código.
 	 */
+
+	//Testar para um lance simples
 	@Test
 	public void deveReceberUmLance() {
 		Leilao leilao = new Leilao("Macbook Pro 15");
@@ -29,6 +35,7 @@ public class LeilaoTest {
 		assertEquals(2000,leilao.getLances().get(0).getValor(),0.00001);
 	}
 
+	//Testar para receber varios lances
 	@Test
 	public void deveReceberVariosLances() {
 		Leilao leilao = new CriadoDeLeilao().para("Mackbook Pro 15")
@@ -41,6 +48,8 @@ public class LeilaoTest {
 		assertEquals(3000,leilao.getLances().get(1).getValor(),0.00001);
 	}
 	
+
+	//Testar para não receber dois lances seguindos do mesmo usuario
 	@Test
 	public void naoDeveAceitarDoisLancesSeguidosDoMesmoUsuario() {
 		Leilao leilao = new CriadoDeLeilao().para("Mackbook Pro 15")
@@ -52,6 +61,8 @@ public class LeilaoTest {
 	    assertEquals(2000,leilao.getLances().get(0).getValor(),0.00001);
 	}
 	
+
+	//Testar para não mais do que cinco lances
 	@Test
 	public void naoDeveAceitarMaisDoQue5LancesDeUmMesmoUsuario() {
 		Leilao leilao = new Leilao("Mackbook Pro 15");
@@ -83,6 +94,8 @@ public class LeilaoTest {
 
 	}
 	
+
+	//Testar para saber se o seguinte ano eh bissexto ou não
 	@Test
 	public void deveRetornarBissexto(){
 		Leilao anoBissexto = new Leilao("Teste");
@@ -90,6 +103,7 @@ public class LeilaoTest {
 		assertEquals(true,anoBissexto.isBissexto(2012));
 	}
 
+	//Testar para saber se o ano não é bissexto
 	@Test
 	public void naoDeveRetornarBissexto(){
 		Leilao anoBissexto = new Leilao("Teste");
@@ -97,11 +111,14 @@ public class LeilaoTest {
 		assertEquals(false,anoBissexto.isBissexto(2011));
 	}
 
+	//Testar para uma execeção
 	@Test(expected=IllegalArgumentException.class)
 	public void deveRecusarLancesComValorDeZero(){
 		new Lance(new Usuario("Jhon Doe"),0);
 	}
 	
+
+	//Testar para uma execeção
 	@Test(expected=IllegalArgumentException.class)
 	public void deveRecursarLancesComValorNegativo() {
 		new Lance(new Usuario("Jhon Doe"),-10);

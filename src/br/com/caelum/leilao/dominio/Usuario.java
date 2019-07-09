@@ -1,13 +1,20 @@
 package br.com.caelum.leilao.dominio;
 
 public class Usuario {
-
+	
+	//Variaveis da classe
 	private int id;
 	private String nome;
 	
+	//Primeiro construtor da classe usuário
 	public Usuario(String nome) {
 		this(0, nome);
 	}
+
+	/*
+	     Quando usamos o método 'equals' com algumas variáveis,estes atributos devem possuir 
+	 uma função hashCode em suas classes.
+	*/
 
 	@Override
 	public int hashCode() {
@@ -37,15 +44,18 @@ public class Usuario {
 		return true;
 	}
 
+	//Segundo construtor da classe usuário
 	public Usuario(int id, String nome) {
 		this.id = id;
 		this.nome = nome;
 	}
 
+	//Obter o id do usuário
 	public int getId() {
 		return id;
 	}
 
+	//Obter o nome do usuário
 	public String getNome() {
 		return nome;
 	}

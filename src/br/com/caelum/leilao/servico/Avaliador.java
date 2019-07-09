@@ -10,10 +10,12 @@ import br.com.caelum.leilao.dominio.Leilao;
 
 public class Avaliador {
 
+	//Variaveis da classe, configara para ter o maior e o menor numero possivel pelo java
 	private double maiorDeTodos = Double.NEGATIVE_INFINITY;
 	private double menorDeTodos = Double.POSITIVE_INFINITY;
 	private List<Lance> maiores;
 
+	//Saber qual o menor lance de todos
 	public void avalia(Leilao leilao) {
 		
 		if(leilao.getLances().size() == 0) {
@@ -33,6 +35,8 @@ public class Avaliador {
 	 * Um leilão com 2 lances, deve devolver os dois lances que encontrou
 	 * Um leilão sem nenhum lance, devolve lista vazia.
 	 */
+
+	//Inserir na variavel 'maiores' o maior lance ofertado
 	public void pegaOsMaioresNo(Leilao leilao) {
 		maiores = new ArrayList<Lance>(leilao.getLances());
 		Collections.sort(maiores,new Comparator<Lance>() {
@@ -45,14 +49,17 @@ public class Avaliador {
 			maiores = maiores.subList(0, maiores.size() > 3 ? 3 :maiores.size());
 	}
 	
+	//Retornar uma lista dos três maiores lances
 	public List<Lance> getTresMaiores(){
 		return this.maiores;
 	}
 	
+	//Obter o maior lance
 	public double getMaiorLance() {
 		return maiorDeTodos;
 	}
 	
+	//Obter o menor lance
 	public double getMenorLance() {
 		return menorDeTodos;
 	}
